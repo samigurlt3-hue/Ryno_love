@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>رسالة خاصة</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: url("her.jpg") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+h1 {
+    font-size: 40px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px pink; }
+    to { text-shadow: 0 0 30px red; }
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.yes { background: #00ff88; }
+.no { background: #ff4444; position: absolute; }
+
+</style>
+</head>
+<body>
+
+<div class="overlay">
+    <h2 id="countdown">3</h2>
+    <h1 id="message" style="display:none;">[اسمها] ❤️ أنا أحبك بجنون</h1>
+    <div id="question" style="display:none;">
+        <h2>هل تحبني؟ 😏</h2>
+        <button class="yes" onclick="alert('كنت عارف ❤️😎')">نعم</button>
+        <button class="no" id="noBtn">لا</button>
+    </div>
+</div>
+
+<script>
+let count = 3;
+let countdownEl = document.getElementById("countdown");
+let messageEl = document.getElementById("message");
+let questionEl = document.getElementById("question");
+
+let timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+        countdownEl.innerHTML = count;
+    } else {
+        clearInterval(timer);
+        countdownEl.style.display = "none";
+        messageEl.style.display = "block";
+        questionEl.style.display = "block";
+    }
+}, 1000);
+
+let noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+});
+</script>
+
+</body>
+</html>
